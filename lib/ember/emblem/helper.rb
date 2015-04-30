@@ -13,10 +13,6 @@ module Ember
 
       private
 
-      def emblem?(filename)
-        filename.to_s =~ /\.raw\.(emblem|hjs|hbs)/
-      end
-
       def mustache_to_emblem(filename, template)
         if filename =~ /\.mustache\.(emblem|hjs|hbs)/
           template.gsub(/\{\{(\w[^\}]+)\}\}/){ |x| "{{unbound #{$1}}}" }

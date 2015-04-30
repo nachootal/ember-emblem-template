@@ -34,26 +34,12 @@ module Ember
       def evaluate(scope, locals, &block)
         filename = scope.pathname.to_s
 
-        raw = emblem?(filename)
-
-        if raw
-          template = data
-        else
-          template = mustache_to_emblem(filename, data)
-        end
+        template = mustache_to_emblem(filename, data)
 
         if config.precompile
-          if raw
-            template = precompile_emblem(template)
-          else
-            template = precompile_ember_emblem(template, config.ember_template)
-          end
+          template = precompile_ember_emblem(template, config.ember_template)
         else
-          if raw
-            template = compile_emblem(data)
-          else
-            template = compile_ember_emblem(template, config.ember_template)
-          end
+          template = compile_ember_emblem(template, config.ember_template)
         end
 
         case config.output_type
