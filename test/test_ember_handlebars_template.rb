@@ -1,15 +1,15 @@
 require 'minitest_helper'
 
-class TestEmberHandlebarsTemplate < Minitest::Test
+class TestEmberEmblemTemplate < Minitest::Test
   def setup
     @env = Sprockets::Environment.new
     @env.append_path File.expand_path('../fixtures', __FILE__)
 
-    Ember::Handlebars::Template.setup @env
+    Ember::Emblem::Template.setup @env
   end
 
   def test_that_it_has_a_version_number
-    refute_nil ::Ember::Handlebars::VERSION
+    refute_nil ::Ember::Emblem::VERSION
   end
 
   def test_should_replace_separators_with_templates_path_separator
@@ -100,12 +100,12 @@ class TestEmberHandlebarsTemplate < Minitest::Test
     end
   end
 
-  def test_compile_template_with_Handlebars_namespace
-    with_ember_template 'Handlebars' do
+  def test_compile_template_with_Emblem_namespace
+    with_ember_template 'Emblem' do
       asset = @env['templates/hi.js']
 
       assert_equal 'application/javascript', asset.content_type
-      assert_match %r{Ember.TEMPLATES\["hi"\] = Ember\.Handlebars\.template\(}, asset.to_s
+      assert_match %r{Ember.TEMPLATES\["hi"\] = Ember\.Emblem\.template\(}, asset.to_s
     end
   end
 
@@ -121,7 +121,7 @@ class TestEmberHandlebarsTemplate < Minitest::Test
   private
 
   def config
-    Ember::Handlebars::Template.config
+    Ember::Emblem::Template.config
   end
 
   def with_template_root(root, sep=nil)

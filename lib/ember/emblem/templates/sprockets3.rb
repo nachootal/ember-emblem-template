@@ -1,5 +1,5 @@
 module Ember
-  module Handlebars
+  module Emblem
     class Template
       include Helper
 
@@ -14,7 +14,7 @@ module Ember
 
         def setup(env)
           env.register_engine '.hbs', self, mime_type: 'application/javascript'
-          env.register_engine '.handlebars', self, mime_type: 'application/javascript'
+          env.register_engine '.emblem', self, mime_type: 'application/javascript'
         end
 
         def instance
@@ -36,25 +36,25 @@ module Ember
         data = input[:data]
         filename = input[:filename]
 
-        raw = handlebars?(filename)
+        raw = emblem?(filename)
 
         if raw
           template = data
         else
-          template = mustache_to_handlebars(filename, data)
+          template = mustache_to_emblem(filename, data)
         end
 
         if config.precompile
           if raw
-            template = precompile_handlebars(template)
+            template = precompile_emblem(template)
           else
-            template = precompile_ember_handlebars(template, config.ember_template, input)
+            template = precompile_ember_emblem(template, config.ember_template, input)
           end
         else
           if raw
-            template = compile_handlebars(data)
+            template = compile_emblem(data)
           else
-            template = compile_ember_handlebars(template, config.ember_template)
+            template = compile_ember_emblem(template, config.ember_template)
           end
         end
 
@@ -74,7 +74,7 @@ module Ember
 
       private
 
-      def precompile_handlebars(template, input)
+      def precompile_emblem(template, input)
         dependencies = [
           Barber::Precompiler.compiler_version,
           template,
@@ -85,7 +85,7 @@ module Ember
         end
       end
 
-      def precompile_ember_handlebars(template, ember_template, input)
+      def precompile_ember_emblem(template, ember_template, input)
         dependencies = [
           Barber::Ember::Precompiler.compiler_version,
           ember_template,

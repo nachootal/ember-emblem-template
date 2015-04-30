@@ -1,5 +1,5 @@
 module Ember
-  module Handlebars
+  module Emblem
     class Template < Tilt::Template
       include Helper
 
@@ -14,7 +14,7 @@ module Ember
 
         def setup(env)
           env.register_engine '.hbs', self
-          env.register_engine '.handlebars', self
+          env.register_engine '.emblem', self
         end
 
         def config
@@ -27,25 +27,25 @@ module Ember
       def evaluate(scope, locals, &block)
         filename = scope.pathname.to_s
 
-        raw = handlebars?(filename)
+        raw = emblem?(filename)
 
         if raw
           template = data
         else
-          template = mustache_to_handlebars(filename, data)
+          template = mustache_to_emblem(filename, data)
         end
 
         if config.precompile
           if raw
-            template = precompile_handlebars(template)
+            template = precompile_emblem(template)
           else
-            template = precompile_ember_handlebars(template, config.ember_template)
+            template = precompile_ember_emblem(template, config.ember_template)
           end
         else
           if raw
-            template = compile_handlebars(data)
+            template = compile_emblem(data)
           else
-            template = compile_ember_handlebars(template, config.ember_template)
+            template = compile_ember_emblem(template, config.ember_template)
           end
         end
 

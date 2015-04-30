@@ -1,5 +1,5 @@
 module Ember
-  module Handlebars
+  module Emblem
     class Config
       attr_accessor :precompile,
         :ember_template,

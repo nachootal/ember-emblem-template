@@ -1,13 +1,13 @@
-# Ember::Handlebars::Template
+# Ember::Emblem::Template
 
-The sprockets template for Ember Handlebars.
+The sprockets template for Ember Emblem.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ember-handlebars-template'
+gem 'ember-emblem-template'
 ```
 
 And then execute:
@@ -19,13 +19,13 @@ $ bundle
 Or install it yourself as:
 
 ```
-$ gem install ember-handlebars-template
+$ gem install ember-emblem-template
 ```
 
 ## Usage
 
 ``` ruby
-Sprockets.register_engine '.hbs', Ember::Handlebars::Template # or other extension which you like.
+Sprockets.register_engine '.emblem', Ember::Emblem::Template # or other extension which you like.
 ```
 
 ## Options
@@ -33,7 +33,7 @@ Sprockets.register_engine '.hbs', Ember::Handlebars::Template # or other extensi
 You can overwrite config as the followings:
 
 ``` ruby
-Ember::Handlebars::Template.configure do |config|
+Ember::Emblem::Template.configure do |config|
   config.precompile = true
 
   # You can overwrite other config

@@ -1,5 +1,5 @@
 module Ember
-  module Handlebars
+  module Emblem
     module Helper
       def self.included(base)
         base.extend ClassMethods
@@ -13,12 +13,12 @@ module Ember
 
       private
 
-      def handlebars?(filename)
-        filename.to_s =~ /\.raw\.(handlebars|hjs|hbs)/
+      def emblem?(filename)
+        filename.to_s =~ /\.raw\.(emblem|hjs|hbs)/
       end
 
-      def mustache_to_handlebars(filename, template)
-        if filename =~ /\.mustache\.(handlebars|hjs|hbs)/
+      def mustache_to_emblem(filename, template)
+        if filename =~ /\.mustache\.(emblem|hjs|hbs)/
           template.gsub(/\{\{(\w[^\}]+)\}\}/){ |x| "{{unbound #{$1}}}" }
         else
           template
@@ -51,19 +51,19 @@ module Ember
         path.join(config.templates_path_separator)
       end
 
-      def compile_handlebars(string)
-        "Handlebars.compile(#{indent(string).inspect});"
+      def compile_emblem(string)
+        "Emblem.compile(#{indent(string).inspect});"
       end
 
-      def precompile_handlebars(string)
-        "Handlebars.template(#{Barber::Precompiler.compile(string)});"
+      def precompile_emblem(string)
+        "Emblem.template(#{Barber::Precompiler.compile(string)});"
       end
 
-      def compile_ember_handlebars(string, ember_template = 'Handlebars')
+      def compile_ember_emblem(string, ember_template = 'emblem')
         "Ember.#{ember_template}.compile(#{indent(string).inspect});"
       end
 
-      def precompile_ember_handlebars(string, ember_template = 'Handlebars')
+      def precompile_ember_emblem(string, ember_template = 'emblem')
         "Ember.#{ember_template}.template(#{Barber::Ember::Precompiler.compile(string)});"
       end
 
