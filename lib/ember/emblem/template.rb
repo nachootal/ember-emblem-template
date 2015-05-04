@@ -6,21 +6,19 @@ module Ember
     autoload :VERSION, 'ember/emblem/version'
     autoload :Config, 'ember/emblem/config'
     autoload :Helper, 'ember/emblem/helper'
+    autoload :Precompiler, 'ember/emblem/precompiler'
 
     class Template < Tilt::Template
       include Helper
+
+      self.default_mime_type = 'application/javascript'
 
       class << self
         def configure
           yield config
         end
 
-        def default_mime_type
-          'application/javascript'
-        end
-
         def setup(env)
-          env.register_engine '.hbs', self
           env.register_engine '.emblem', self
         end
 
@@ -32,9 +30,7 @@ module Ember
       def prepare; end
 
       def evaluate(scope, locals, &block)
-        filename = scope.pathname.to_s
-
-        template = mustache_to_emblem(filename, data)
+        template = data
 
         if config.precompile
           template = precompile_ember_emblem(template, config.ember_template)
@@ -42,18 +38,8 @@ module Ember
           template = compile_ember_emblem(template, config.ember_template)
         end
 
-        case config.output_type
-        when :amd
-          target = amd_template_target(config.amd_namespace, scope.logical_path.split(".").first)
-
-          "define('#{target}', ['exports'], function(__exports__){ __exports__['default'] = #{template} });"
-        when :global
-          target = global_template_target(scope.logical_path, config)
-
-          "#{target} = #{template}\n"
-        else
-          raise "Unsupported `output_type`: #{config.output_type}"
-        end
+        target = global_template_target(scope.logical_path, config)
+        "#{target} = #{template}\n"
       end
 
       def config

@@ -82,24 +82,6 @@ class TestEmberEmblemTemplate < Minitest::Test
     end
   end
 
-  def test_template_with_AMD_output_using_app_namespace
-    with_amd_output('app') do
-      asset = @env['templates/hi.js']
-
-      assert_equal 'application/javascript', asset.content_type
-      assert_match %r{define\('app/templates/hi'}, asset.to_s
-    end
-  end
-
-  def test_template_with_AMD_output_using_nil_namespace
-    with_amd_output(nil) do
-      asset = @env['templates/hi.js']
-
-      assert_equal 'application/javascript', asset.content_type
-      assert_match %r{define\('templates/hi'}, asset.to_s
-    end
-  end
-
   def test_compile_template_with_Emblem_namespace
     with_ember_template 'Emblem' do
       asset = @env['templates/hi.js']
@@ -116,6 +98,16 @@ class TestEmberEmblemTemplate < Minitest::Test
       assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["hi"\] = Ember\.HTMLBars\.template\(}, asset.to_s
     end
+  end
+
+  def test_should_compile_template_all_the_way_down
+    asset = @env['complex.js']
+    assert_match %r{dom.createElement\(\"p}, asset.to_s
+    assert_match %r{dom.createTextNode\(\"complex}, asset.to_s
+  end
+
+  def test_logical_path_is_js_not_emblem
+    assert_equal 'app/templates/application.js', @env['app/templates/application.js'].logical_path
   end
 
   private

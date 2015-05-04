@@ -10,7 +10,7 @@ module Ember
 
       def initialize
         self.precompile = true
-        self.ember_template = 'HTMLBars'
+        self.ember_template = 'Handlebars'
         self.output_type = :global
         self.amd_namespace = nil
         self.templates_root = 'templates'

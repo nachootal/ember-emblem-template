@@ -1,3 +1,5 @@
+require "barber/ember/precompiler"
+
 module Ember
   module Emblem
     module Helper
@@ -12,18 +14,6 @@ module Ember
       end
 
       private
-
-      def mustache_to_emblem(filename, template)
-        if filename =~ /\.mustache\.(emblem|hjs|hbs)/
-          template.gsub(/\{\{(\w[^\}]+)\}\}/){ |x| "{{unbound #{$1}}}" }
-        else
-          template
-        end
-      end
-
-      def amd_template_target(namespace, module_name)
-        [namespace, module_name].compact.join('/')
-      end
 
       def global_template_target(module_name, config)
         "Ember.TEMPLATES[#{template_path(module_name, config).inspect}]"
@@ -47,20 +37,14 @@ module Ember
         path.join(config.templates_path_separator)
       end
 
-      def compile_emblem(string)
-        "Emblem.compile(#{indent(string).inspect});"
+      def compile_ember_emblem(string, ember_template = 'handlebars')
+        handlebars = Precompiler.compile(string)
+        "Ember.#{ember_template}.compile(#{indent(handlebars).inspect});"
       end
 
-      def precompile_emblem(string)
-        "Emblem.template(#{Barber::Precompiler.compile(string)});"
-      end
-
-      def compile_ember_emblem(string, ember_template = 'emblem')
-        "Ember.#{ember_template}.compile(#{indent(string).inspect});"
-      end
-
-      def precompile_ember_emblem(string, ember_template = 'emblem')
-        "Ember.#{ember_template}.template(#{Barber::Ember::Precompiler.compile(string)});"
+      def precompile_ember_emblem(string, ember_template = 'handlebars')
+        handlebars = Precompiler.compile(string)
+        "Ember.#{ember_template}.template(#{Barber::Ember::Precompiler.compile(handlebars)});"
       end
 
       def indent(string)
@@ -69,3 +53,4 @@ module Ember
     end
   end
 end
+
