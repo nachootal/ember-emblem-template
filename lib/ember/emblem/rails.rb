@@ -1,5 +1,3 @@
-require "ember/emblem/template"
-
 module Ember
   module Emblem
     module Rails

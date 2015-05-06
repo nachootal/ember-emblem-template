@@ -1,6 +1,7 @@
 require 'sprockets'
 require 'barber'
 require 'ember/handlebars/template'
+require 'ember/emblem/rails' if defined?(Rails)
 
 module Ember
   module Emblem
