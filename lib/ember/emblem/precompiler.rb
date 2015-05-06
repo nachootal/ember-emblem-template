@@ -1,4 +1,5 @@
 require "execjs"
+require "barber"
 
 module Ember
   module Emblem

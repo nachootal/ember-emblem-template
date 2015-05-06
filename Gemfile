@@ -4,3 +4,4 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'sprockets', ["~> 2.0", "< 3.0"]
+gem 'ember-handlebars-template'
