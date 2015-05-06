@@ -82,12 +82,12 @@ class TestEmberEmblemTemplate < Minitest::Test
     end
   end
 
-  def test_compile_template_with_Emblem_namespace
-    with_ember_template 'Emblem' do
+  def test_compile_template_with_Handlebars_namespace
+    with_ember_template 'Handlebars' do
       asset = @env['templates/hi.js']
 
       assert_equal 'application/javascript', asset.content_type
-      assert_match %r{Ember.TEMPLATES\["hi"\] = Ember\.Emblem\.template\(}, asset.to_s
+      assert_match %r{Ember.TEMPLATES\["hi"\] = Ember\.Handlebars\.template\(}, asset.to_s
     end
   end
 
