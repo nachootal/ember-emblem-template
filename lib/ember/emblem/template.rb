@@ -14,6 +14,10 @@ module Ember
         env.register_engine '.emblem', self
       end
 
+      def self.config
+        @config ||= Config.new
+      end
+
       def evaluate(scope, locals, &block)
         template = data
 
@@ -62,7 +66,7 @@ module Ember
       end
 
       def config
-        @config ||= Config.new
+        @config ||= self.class.config.dup
       end
     end
   end
