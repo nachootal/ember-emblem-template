@@ -60,6 +60,10 @@ module Ember
         handlebars = Precompiler.compile(string)
         "Ember.#{ember_template}.template(#{Barber::Ember::Precompiler.compile(handlebars)});"
       end
+
+      def config
+        @config ||= Config.new
+      end
     end
   end
 end
