@@ -16,6 +16,8 @@ And then execute:
 $ bundle
 ```
 
+Now any templates ending in .emblem will be compiled as Ember-Handlebars templates.
+
 ## Options
 
 You can overwrite config as the followings:
@@ -39,18 +41,6 @@ Enables or disables precompilation.(default: `true`)
 Type: `String`
 
 Default which Ember template type to compile. `HTMLBars` / `Handlebars`. (default: `HTMLBars`)
-
-### templates_root
-
-Type: `String`
-
-Sets the root path for templates to be looked up in. (default: `templates`)
-
-### templates_path_separator
-
-Type: `String`
-
-The path separator to use for templates. (default: `/`)
 
 ## Contributing
 
