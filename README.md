@@ -1,6 +1,6 @@
 # Ember::Emblem::Template
 
-The sprockets template for Ember Emblem.
+Integrate Emblem.js with ember-rails.
 
 ## Installation
 
@@ -14,18 +14,6 @@ And then execute:
 
 ```
 $ bundle
-```
-
-Or install it yourself as:
-
-```
-$ gem install ember-emblem-template
-```
-
-## Usage
-
-``` ruby
-Sprockets.register_engine '.emblem', Ember::Emblem::Template # or other extension which you like.
 ```
 
 ## Options
@@ -52,18 +40,6 @@ Type: `String`
 
 Default which Ember template type to compile. `HTMLBars` / `Handlebars`. (default: `HTMLBars`)
 
-### output_type
-
-Type: `Symbol`
-
-Configures the style of output. `:global` / `:amd`. (default `:global`)
-
-### amd_namespace
-
-Type: `String`
-
-Configures the module prefix for AMD formatted output. (default: `nil`)
-
 ### templates_root
 
 Type: `String`
@@ -75,12 +51,6 @@ Sets the root path for templates to be looked up in. (default: `templates`)
 Type: `String`
 
 The path separator to use for templates. (default: `/`)
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
