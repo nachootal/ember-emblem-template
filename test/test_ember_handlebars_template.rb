@@ -17,7 +17,7 @@ class TestEmberEmblemTemplate < Minitest::Test
     with_template_root('', '-') do
       asset = @env['app/templates/application.emblem']
 
-      #assert_equal 'application/javascript', asset.content_type
+      assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["app-templates-application"\]}, asset.to_s
     end
   end
@@ -26,7 +26,7 @@ class TestEmberEmblemTemplate < Minitest::Test
     with_template_root('app', '/') do
       asset = @env['app/templates/app/example.emblem']
 
-      #assert_equal 'application/javascript', asset.content_type
+      assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["templates/app/example"\]}, asset.to_s
     end
   end
@@ -35,7 +35,7 @@ class TestEmberEmblemTemplate < Minitest::Test
     with_template_root('app/templates') do
       asset = @env['app/templates/app/example.emblem']
 
-      # assert_equal 'application/javascript', asset.content_type
+      assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["app/example"\]}, asset.to_s
     end
   end
@@ -44,14 +44,14 @@ class TestEmberEmblemTemplate < Minitest::Test
     with_template_root(['templates', 'templates_mobile']) do
       asset = @env['templates/hi.emblem']
 
-      #assert_equal 'application/javascript', asset.content_type
+      assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["hi"\]}, asset.to_s
     end
 
     with_template_root(['templates', 'templates_mobile']) do
       asset = @env['templates_mobile/hi.emblem']
 
-      #assert_equal 'application/javascript', asset.content_type
+      assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["hi"\]}, asset.to_s
     end
   end
@@ -60,7 +60,7 @@ class TestEmberEmblemTemplate < Minitest::Test
     with_template_root('templates') do
       asset = @env['app/templates/hi.emblem']
 
-      #assert_equal 'application/javascript', asset.content_type
+      assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["app/hi"\]}, asset.to_s
     end
   end
@@ -69,7 +69,7 @@ class TestEmberEmblemTemplate < Minitest::Test
     with_template_root('templates') do
       asset = @env['templates/index.emblem']
 
-      #assert_equal 'application/javascript', asset.content_type
+      assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["index"\]}, asset.to_s
     end
   end
@@ -78,7 +78,7 @@ class TestEmberEmblemTemplate < Minitest::Test
     with_template_root('') do
       asset = @env['index.emblem']
 
-      #assert_equal 'application/javascript', asset.content_type
+      assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["index"\]}, asset.to_s
     end
   end
@@ -87,7 +87,7 @@ class TestEmberEmblemTemplate < Minitest::Test
     with_ember_template 'Handlebars' do
       asset = @env['templates/hi.emblem']
 
-      #assert_equal 'application/javascript', asset.content_type
+      assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["hi"\] = Ember\.Handlebars\.template\(}, asset.to_s
     end
   end
@@ -96,7 +96,7 @@ class TestEmberEmblemTemplate < Minitest::Test
     with_ember_template 'HTMLBars' do
       asset = @env['templates/hi.emblem']
 
-      #assert_equal 'application/javascript', asset.content_type
+      assert_equal 'application/javascript', asset.content_type
       assert_match %r{Ember.TEMPLATES\["hi"\] = Ember\.HTMLBars\.template\(}, asset.to_s
     end
   end

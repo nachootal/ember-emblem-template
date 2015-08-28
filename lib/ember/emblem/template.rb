@@ -11,7 +11,7 @@ module Ember
 
     class Template < Ember::Handlebars::Template
       def self.setup(env)
-        env.register_engine '.emblem', self
+        env.register_engine '.emblem', self, mime_type: 'application/javascript'
       end
 
       def self.config
@@ -55,12 +55,12 @@ module Ember
         path.join(config.templates_path_separator)
       end
 
-      def compile_ember_emblem(string, ember_template = 'handlebars')
+      def compile_ember_handlebars(string, ember_template = 'Handlebars', input = {})
         handlebars = Precompiler.compile(string)
         "Ember.#{ember_template}.compile(#{indent(handlebars).inspect});"
       end
 
-      def precompile_ember_emblem(string, ember_template = 'handlebars')
+      def precompile_ember_handlebars(string, ember_template = 'Handlebars', input = {})
         handlebars = Precompiler.compile(string)
         "Ember.#{ember_template}.template(#{Barber::Ember::Precompiler.compile(handlebars)});"
       end
