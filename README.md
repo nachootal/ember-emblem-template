@@ -2,6 +2,11 @@
 
 Integrate Emblem.js with ember-rails.
 
+## Note this fork (Emblem 0.6.1):
+
+This fork focusses for use with Ember 2+ installations. Not on backwards
+compatibility.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -23,10 +28,21 @@ Now any templates ending in .emblem will be compiled as Ember-Handlebars templat
 You can overwrite config as the followings:
 
 ``` ruby
-Ember::Emblem::Template.configure do |config|
-  config.precompile = true
+if defined?(Ember::Emblem::Template)
+  Ember::Emblem::Template.configure do |config|
+    config.precompile = true
 
-  # You can overwrite other config
+    # If you have a rails app with two ember applications, located at:
+    #   app/assets/javascripts/namespace1/app
+    #   app/assets/javascripts/namespace2/app
+    # then set the following. The default (empty string) is when
+    # your ember app is in the rails root (app/assets/javascripts).
+    # TIP: always use namespaces, for single ember rails app 
+    # use namespace app (app/assets/javascripts/app)!
+    config.templates_root = %w[namespace1/app/templates namespace2/app/templates]
+
+    # You can overwrite other config
+  end
 end
 ```
 
