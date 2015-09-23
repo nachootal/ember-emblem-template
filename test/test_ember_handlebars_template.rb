@@ -106,9 +106,9 @@ class TestEmberEmblemTemplate < Minitest::Test
     assert_match %r{dom.createTextNode\(\"complex}, asset.to_s
   end
 
-  #def test_logical_path_is_js_not_emblem
-  #  assert_equal 'app/templates/application.js', @env['app/templates/application.emblem'].logical_path
-  #end
+  def test_logical_path_is_js_not_emblem
+    assert_equal 'app/templates/application.js', @env['app/templates/application.emblem'].logical_path
+  end
 
   private
 
