@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/botandrose/ember-emblem-template.svg)](https://travis-ci.org/botandrose/ember-emblem-template)
+
 # Ember::Emblem::Template
 
 Integrate Emblem.js with ember-rails.
