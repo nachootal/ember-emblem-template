@@ -4,5 +4,4 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'sprockets'
-gem 'pry'
 gem 'ember-handlebars-template'
