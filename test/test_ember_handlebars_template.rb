@@ -1,5 +1,4 @@
 require 'minitest_helper'
-require 'pry'
 
 class TestEmberEmblemTemplate < Minitest::Test
   def setup
