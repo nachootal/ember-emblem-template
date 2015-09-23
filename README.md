@@ -4,11 +4,6 @@
 
 Integrate Emblem.js with ember-rails.
 
-## Note this fork (Emblem 0.6.1):
-
-This fork focusses for use with Ember 2+ installations. Not on backwards
-compatibility.
-
 ## Installation
 
 Add this line to your application's Gemfile:
