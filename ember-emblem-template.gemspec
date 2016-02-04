@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{The sprockets template for Ember Emblem.}
   spec.description   = %q{The sprockets template for Ember Emblem.}
-  spec.homepage      = 'https://github.com/tricknotes/ember-emblem-template'
+  spec.homepage      = 'https://github.com/botandrose/ember-emblem-template'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
@@ -18,8 +18,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'sprockets', '>= 3.3', '< 3.4'
-  spec.add_dependency 'barber', '>= 0.9.0'
+  spec.add_dependency 'ember-handlebars-template', '~> 0.6.0'
 
   spec.add_development_dependency 'bundler', '~> 1.7'
   spec.add_development_dependency 'rake', '~> 10.0'

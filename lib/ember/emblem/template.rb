@@ -60,7 +60,7 @@ module Ember
         "Ember.#{ember_template}.compile(#{indent(handlebars).inspect});"
       end
 
-      def precompile_ember_handlebars(string, ember_template = 'Handlebars', input = {})
+      def precompile_ember_handlebars(string, ember_template = 'Handlebars', input = {}, options = nil)
         handlebars = Precompiler.compile(string)
         "Ember.#{ember_template}.template(#{Barber::Ember::Precompiler.compile(handlebars)});"
       end
