@@ -55,14 +55,14 @@ module Ember
         path.join(config.templates_path_separator)
       end
 
-      def compile_ember_handlebars(string, ember_template = 'Handlebars', input = {})
+      def compile_ember_handlebars(string, ember_template = 'Handlebars', options = nil)
         handlebars = Precompiler.compile(string)
-        "Ember.#{ember_template}.compile(#{indent(handlebars).inspect});"
+        "Ember.#{ember_template}.compile(#{indent(handlebars).inspect}, #{options.to_json});"
       end
 
       def precompile_ember_handlebars(string, ember_template = 'Handlebars', input = {}, options = nil)
         handlebars = Precompiler.compile(string)
-        "Ember.#{ember_template}.template(#{Barber::Ember::Precompiler.compile(handlebars)});"
+        "Ember.#{ember_template}.template(#{Barber::Ember::Precompiler.compile(handlebars, options)});"
       end
 
       def config
