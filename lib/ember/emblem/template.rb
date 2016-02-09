@@ -27,15 +27,11 @@ module Ember
           template = compile_ember_emblem(template, config.ember_template)
         end
 
-        target = global_template_target(scope.logical_path, config)
+        target = global_template_target('Ember.TEMPLATES', scope.logical_path, config)
         "#{target} = #{template}\n"
       end
 
       private
-
-      def global_template_target(module_name, config)
-        "Ember.TEMPLATES[#{template_path(module_name, config).inspect}]"
-      end
 
       def template_path(path, config)
         root = config.templates_root
