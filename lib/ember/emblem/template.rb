@@ -27,26 +27,18 @@ module Ember
           template = compile_ember_emblem(template, config.ember_template)
         end
 
-        target = global_template_target(scope.logical_path, config)
+        target = global_template_target('Ember.TEMPLATES', scope.logical_path, config)
         "#{target} = #{template}\n"
       end
 
       private
 
-      def global_template_target(module_name, config)
-        "Ember.TEMPLATES[#{template_path(module_name, config).inspect}]"
-      end
-
       def template_path(path, config)
         root = config.templates_root
 
-        if root.kind_of? Array
-          root.each do |r|
-            path.sub!(/#{Regexp.quote(r)}\//, '')
-          end
-        else
-          unless root.empty?
-            path.sub!(/#{Regexp.quote(root)}\/?/, '')
+        unless root.empty?
+          Array(root).each.each do |r|
+            path = path.sub(/#{Regexp.quote(r)}\//, '')
           end
         end
 
@@ -55,14 +47,14 @@ module Ember
         path.join(config.templates_path_separator)
       end
 
-      def compile_ember_handlebars(string, ember_template = 'Handlebars', input = {})
+      def compile_ember_handlebars(string, ember_template = 'Handlebars', options = nil)
         handlebars = Precompiler.compile(string)
-        "Ember.#{ember_template}.compile(#{indent(handlebars).inspect});"
+        "Ember.#{ember_template}.compile(#{indent(handlebars).inspect}, #{options.to_json});"
       end
 
-      def precompile_ember_handlebars(string, ember_template = 'Handlebars', input = {})
+      def precompile_ember_handlebars(string, ember_template = 'Handlebars', input = {}, options = nil)
         handlebars = Precompiler.compile(string)
-        "Ember.#{ember_template}.template(#{Barber::Ember::Precompiler.compile(handlebars)});"
+        "Ember.#{ember_template}.template(#{Barber::Ember::Precompiler.compile(handlebars, options)});"
       end
 
       def config
