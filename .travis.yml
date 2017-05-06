@@ -5,3 +5,7 @@ rvm:
   - 2.0.0
   - 2.1
   - 2.2
+env:
+  matrix:
+    - SPROCKETS_VERSION="~> 3.7.0"
+    - SPROCKETS_VERSION="~> 4.0.0.beta.4"

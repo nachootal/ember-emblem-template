@@ -11,7 +11,8 @@ module Ember
 
     class Template < Ember::Handlebars::Template
       def self.setup(env)
-        env.register_engine '.emblem', self, mime_type: 'application/javascript'
+        env.register_mime_type 'text/x-emblem', extensions: ['.emblem']
+        env.register_transformer 'text/x-emblem', 'application/javascript', Ember::Emblem::Template
       end
 
       def self.config
