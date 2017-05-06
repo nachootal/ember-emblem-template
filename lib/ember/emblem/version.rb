@@ -1,5 +1,5 @@
 module Ember
   module Emblem
-    VERSION = '0.4.0'
+    VERSION = '0.5.0'
   end
 end
